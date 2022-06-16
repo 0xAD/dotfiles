@@ -123,6 +123,7 @@
 (set-face-foreground 'font-lock-string-face str-com-grey)
 (set-face-foreground 'font-lock-doc-face "black")
 (set-face-foreground 'font-lock-negation-char-face "black")
+(set-face-foreground 'font-lock-doc-markup-face str-com-grey)
 
 (add-to-list 'default-frame-alist '(background-color . "#FFFFEA"))
 
@@ -136,8 +137,12 @@
 
 (add-hook 'rust-mode-hook #'lsp)
 
+(setq lsp-ui-doc-enable t)
+(setq lsp-ui-doc-show-with-cursor nil)
+(global-set-key (kbd "C-c d") 'lsp-ui-doc-show)
+
 ; list the packages you want
-(setq package-list '(smex magit rust-mode projectile lsp-mode company))
+(setq package-list '(smex magit rust-mode projectile lsp-mode lsp-ui company))
 
 (require 'package)
 (add-to-list 'package-archives
@@ -162,7 +167,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages '(company lsp-mode projectile rust-mode magit smex)))
+ '(package-selected-packages '(company lsp-mode lsp-ui projectile rust-mode magit smex)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
